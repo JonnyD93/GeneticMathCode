@@ -1,4 +1,5 @@
 import random
+import operator
 from collections import defaultdict
 Questions = {}
 Answers = {}
@@ -45,6 +46,27 @@ for x in range(1,11):
 	fitness(x)
 print(FitnessofParents)
 
+#Finding the 5 highest parents
+for x in range (1,6):
+	globals()['Fitness{0}'.format(x)] = max(FitnessofParents, key=FitnessofParents.get)
+	FitnessofParents.pop(max(FitnessofParents, key=FitnessofParents.get),None)
+print(FitnessofParents)
+print(Fitness1)
+print(Fitness2)
+print(Fitness3)
+print(Fitness4)
+print(Fitness5)
+
+
 #Comparer
-def Comparer(x):
-	
+
+
+
+
+
+
+
+
+
+
+
