@@ -8,9 +8,10 @@ for x in range(1,(10+1)):
 	z = random.randint(0,10)
 	Answers[x] = z + y
 	Questions[x] = str(y) + " + "  + str(z) + " = "
-
-Parents = {}
-FitnessofParents = {}
+NumberofParents = 10
+Gen0 = {}
+FitnessofCurrentGeneration = {}
+MutationChance = 0.1
 
 ##The Randomizer
 def randomizer(number1,number2):
@@ -19,54 +20,76 @@ def randomizer(number1,number2):
 	
 #The Startup Generation
 def createGen0(numberofparents,range1,range2):
-	parent = dict()
+	Offspring = dict()
 	for x in range(1, (numberofparents+1)):
-		Parents['parent{0}'.format(x)] = randomizer(range1,range2)
-		FitnessofParents['parent{0}'.format(x)] = 0
+		Gen0['Offspring{0}'.format(x)] = randomizer(range1,range2)
+		FitnessofCurrentGeneration['Offspring{0}'.format(x)] = 0
 		
 #Creating the initial Generation
-createGen0(10,0,20)
-print (Parents)
+createGen0(NumberofParents,0,20)
+print (Gen0)
 
 #Checking the fitness of each parent
-def fitness(parentnumber):
+def fitness(ParentNumber,GenerationNumber):
 	for x in range(1,11):
-		checker = Parents['parent'+str(parentnumber)][x-1]
+		checker = (globals()['Gen{0}'.format(GenerationNumber)])['Offspring'+str(ParentNumber)][x-1]
 		if str(checker) == str(Answers[x]):
-			FitnessofParents['parent'+str(parentnumber)] = FitnessofParents['parent'+str(parentnumber)] + 100
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 100
 		elif int(checker)-1 == Answers[x] or int(checker)+1 == Answers[x]:
-			FitnessofParents['parent'+str(parentnumber)] = FitnessofParents['parent'+str(parentnumber)] + 75
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 75
 		elif int(checker)-2 == Answers[x] or int(checker)+2 == Answers[x]:
-			FitnessofParents['parent'+str(parentnumber)] = FitnessofParents['parent'+str(parentnumber)] + 50
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 50
 		elif int(checker)-3 == Answers[x] or int(checker)+3 == Answers[x]:
-			FitnessofParents['parent'+str(parentnumber)] = FitnessofParents['parent'+str(parentnumber)] + 25
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 25
 
 #The checking of all the parents
 for x in range(1,11):
-	fitness(x)
-print(FitnessofParents)
+	fitness(x,0)
+print(FitnessofCurrentGeneration)
 
 #Finding the 5 highest parents
 for x in range (1,6):
-	globals()['Fitness{0}'.format(x)] = max(FitnessofParents, key=FitnessofParents.get)
-	FitnessofParents.pop(max(FitnessofParents, key=FitnessofParents.get),None)
-print(FitnessofParents)
+	globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
+	FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
+print(FitnessofCurrentGeneration)
 print(Fitness1)
 print(Fitness2)
 print(Fitness3)
 print(Fitness4)
 print(Fitness5)
-
-
+#Creating Generations
+"""Fitness1
+Fitness1 + Fitness2
+Fitness1 + Fitness3
+Fitness1 + Fitness4
+Fitness1 + Fitness5
+Fitness2 + Fitness3
+Fitness2 + Fitness5
+Fitness3 + Fitness4
+New Fitness
+New Fitness
+"""
+#Creates Modular Generations, Error in the offspring rn, the offspring arent actually improving but coming to an equalibrium.
+def createGenN(numberofparents,range1,range2,GenerationNumber):
+	globals()['Gen{0}'.format(GenerationNumber)] = dict()
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(1)] = (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(2)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness2],10)
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness3],10)
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(4)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness4],10)
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(5)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness5],10)
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(6)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness2] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness3],10)
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(7)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness2] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness5],10)
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(8)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness3] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness4],10)
+	for x in range(9, (numberofparents+1)):
+		(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(x)] = randomizer(range1,range2)
+	for x in range(1, (numberofparents+1)):
+		FitnessofCurrentGeneration['Offspring{0}'.format(x)] = 0
+createGenN(10,0,20,1)
+print(Gen1)
+for x in range(2,101):
+	createGenN(10,0,20,x)
+	print((globals()['Gen{0}'.format(x)]))
+	for x in range(1,11):
+		fitness(x,1)
+	print(FitnessofCurrentGeneration)
 #Comparer
-
-
-
-
-
-
-
-
-
-
-
