@@ -69,40 +69,73 @@ Fitness3 + Fitness4
 New Fitness
 New Fitness
 """
-#Creates Modular Generations, Error in the offspring rn, the offspring arent actually improving but coming to an equalibrium.
+#Creates Modular Generations
 def createGenN(numberofparents,range1,range2,GenerationNumber):
 	globals()['Gen{0}'.format(GenerationNumber)] = dict()
 	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(1)] = (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1]
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(2)] = [
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][0])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][0]))))
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][1])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][1]))))
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][2])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][2]))))
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][3])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][3]))))
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][4])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][4]))))
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][5])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][5]))))
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][6])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][6]))))
-	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][7])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][7]))))
-	,int(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][8])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][8])))
-	,int(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][9])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][9])))]
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness3],10)
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(4)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness4],10)
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(5)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness5],10)
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(6)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness2] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness3],10)
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(7)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness2] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness5],10)
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(8)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness3] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness4],10)
+	for z in range(0,10):
+		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][z])]
+		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(2)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	for z in range(0,10):
+		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness3][z])]
+		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	for z in range(0,10):
+		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness4][z])]
+		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(4)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	for z in range(0,10):
+		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness5][z])]
+		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(5)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	for z in range(0,10):
+		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness3][z])]
+		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(6)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	for z in range(0,10):
+		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness5][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][z])]
+		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(7)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	for z in range(0,10):
+		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness3][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness4][z])]
+		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(8)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
 	for x in range(9, (numberofparents+1)):
 		(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(x)] = randomizer(range1,range2)
 	for x in range(1, (numberofparents+1)):
 		FitnessofCurrentGeneration['Offspring{0}'.format(x)] = 0
+
+
+
+
+
 createGenN(10,0,20,1)
 print(Gen1)
-"""for x in range(2,101):
-	createGenN(10,0,20,x)
-	print((globals()['Gen{0}'.format(x)]))
+for x in range(1,11):
+	fitness(x,1)
+print(FitnessofCurrentGeneration)
+for x in range (1,6):
+	globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
+	FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
+
+for GenerationNumber in range(2,101):
+	t = GenerationNumber
+	createGenN(10,0,20,t)
+	#print((globals()['Gen{0}'.format(t)]))
 	for x in range(1,11):
-		fitness(x,1)
+		fitness(x,t)
 	print(FitnessofCurrentGeneration)
+	for x in range (1,6):
+		globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
+		FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
+print(Answers)
 #Comparer
-
-
-[random.choice(x[0] + y[0]),random.choice(x[1] + y[1]),random.choice(x[2] + y[2]),random.choice(x[3] + y[3]),random.choice(x[4] + y[4]),random.choice(x[5] + y[5]),random.choice(x[6] + y[6]),random.choice(x[7] + y[7]),random.choice(x[8] + y[9])]"""
+"""[random.choice(x[0] + y[0]),random.choice(x[1] + y[1]),random.choice(x[2] + y[2]),random.choice(x[3] + y[3]),random.choice(x[4] + y[4]),random.choice(x[5] + y[5]),random.choice(x[6] + y[6]),random.choice(x[7] + y[7]),random.choice(x[8] + y[9])]
+x = [10,20,30]
+y = [44,55,66]
+for z in range(0,3):
+	locals()['placeholder{0}'.format(z)] = [x[z],y[z]]
+	locals()['placeholder{0}'.format(z)] = random.choice(locals()['placeholder{0}'.format(z)])
+xy = [placeholder0,placeholder1,placeholder2]
+print (xy)"""
