@@ -73,7 +73,17 @@ New Fitness
 def createGenN(numberofparents,range1,range2,GenerationNumber):
 	globals()['Gen{0}'.format(GenerationNumber)] = dict()
 	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(1)] = (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1]
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(2)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness2],10)
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(2)] = [
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][0])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][0]))))
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][1])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][1]))))
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][2])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][2]))))
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][3])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][3]))))
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][4])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][4]))))
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][5])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][5]))))
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][6])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][6]))))
+	,int(random.choice(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][7])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][7]))))
+	,int(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][8])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][8])))
+	,int(str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][9])) + str((globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][9])))]
 	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness3],10)
 	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(4)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness4],10)
 	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(5)] = random.sample((globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1] + (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness5],10)
@@ -86,10 +96,13 @@ def createGenN(numberofparents,range1,range2,GenerationNumber):
 		FitnessofCurrentGeneration['Offspring{0}'.format(x)] = 0
 createGenN(10,0,20,1)
 print(Gen1)
-for x in range(2,101):
+"""for x in range(2,101):
 	createGenN(10,0,20,x)
 	print((globals()['Gen{0}'.format(x)]))
 	for x in range(1,11):
 		fitness(x,1)
 	print(FitnessofCurrentGeneration)
 #Comparer
+
+
+[random.choice(x[0] + y[0]),random.choice(x[1] + y[1]),random.choice(x[2] + y[2]),random.choice(x[3] + y[3]),random.choice(x[4] + y[4]),random.choice(x[5] + y[5]),random.choice(x[6] + y[6]),random.choice(x[7] + y[7]),random.choice(x[8] + y[9])]"""
