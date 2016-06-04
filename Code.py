@@ -17,14 +17,14 @@ MutationChance = 0.1
 def randomizer(number1,number2):
 	X = [random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2)]
 	return X
-	
+
 #The Startup Generation
 def createGen0(numberofparents,range1,range2):
 	Offspring = dict()
 	for x in range(1, (numberofparents+1)):
 		Gen0['Offspring{0}'.format(x)] = randomizer(range1,range2)
 		FitnessofCurrentGeneration['Offspring{0}'.format(x)] = 0
-		
+
 #Creating the initial Generation
 createGen0(NumberofParents,0,20)
 print (Gen0)
@@ -72,36 +72,36 @@ New Fitness
 #Creates Modular Generations
 def createGenN(numberofparents,range1,range2,GenerationNumber):
 	globals()['Gen{0}'.format(GenerationNumber)] = dict()
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(1)] = (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1]
+	#(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(1)] = (globals()['Gen{0}'.format(GenerationNumber-1)])[Fitness1]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(2)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(1)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness3][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(2)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness4][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(4)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness5][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(5)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(4)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness3][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(6)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(5)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness5][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(7)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(6)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness3][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness4][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(8)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
-	for x in range(9, (numberofparents+1)):
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(7)] = [placeholder0,placeholder1,placeholder2,placeholder3,placeholder4,placeholder5,placeholder6,placeholder7,placeholder8,placeholder9]
+	for x in range(8, (numberofparents+1)):
 		(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(x)] = randomizer(range1,range2)
 	for x in range(1, (numberofparents+1)):
 		FitnessofCurrentGeneration['Offspring{0}'.format(x)] = 0
@@ -109,7 +109,7 @@ def createGenN(numberofparents,range1,range2,GenerationNumber):
 
 
 
-
+"""
 createGenN(10,0,20,1)
 print(Gen1)
 for x in range(1,11):
@@ -118,13 +118,14 @@ print(FitnessofCurrentGeneration)
 for x in range (1,6):
 	globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
 	FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
-
-for GenerationNumber in range(2,101):
+"""
+for GenerationNumber in range(1,101):
 	t = GenerationNumber
 	createGenN(10,0,20,t)
 	#print((globals()['Gen{0}'.format(t)]))
 	for x in range(1,11):
 		fitness(x,t)
+	print ("Generation " + str(t))
 	print(FitnessofCurrentGeneration)
 	for x in range (1,6):
 		globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
