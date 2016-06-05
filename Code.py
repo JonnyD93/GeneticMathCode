@@ -3,7 +3,7 @@ import operator
 from collections import defaultdict
 Questions = {}
 Answers = {}
-answerhigh = 20
+answerhigh = 10
 NumberofParents = 12
 MutationChance = 6 #1 = 100%, 2 = 50%, 3 = 30%, 4-5 = 20%, 6-7-8-9-10 = 10%
 lowest = -(answerhigh + answerhigh)
@@ -56,8 +56,16 @@ def fitness(ParentNumber,GenerationNumber):
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 50
 		elif int(checker)-7 == Answers[x] or int(checker)+7 == Answers[x]:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 75
-		else:
+		elif int(checker)-8 == Answers[x] or int(checker)+8 == Answers[x]:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 100
+		elif int(checker)-9 == Answers[x] or int(checker)+9 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 125
+		elif int(checker)-10 == Answers[x] or int(checker)+10 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 150
+		elif int(checker)-11 == Answers[x] or int(checker)+11 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 175
+		else:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 200
 
 #The checking of all the parents
 for x in range(1,NumberofParents):
