@@ -3,19 +3,23 @@ import operator
 from collections import defaultdict
 Questions = {}
 Answers = {}
+answerhigh = 20
+NumberofParents = 12
+MutationChance = 6 #1 = 100%, 2 = 50%, 3 = 30%, 4-5 = 20%, 6-7-8-9-10 = 10%
+lowest = -(answerhigh + answerhigh)
+highest = answerhigh + answerhigh
+
 for x in range(1,(10+1)):
-	y = random.randint(-10,10)
-	z = random.randint(-10,10)
+	y = random.randint(-answerhigh,answerhigh)
+	z = random.randint(-answerhigh,answerhigh)
 	Answers[x] = z + y
-	Questions[x] = str(y) + " + "  + str(z) + " = "
-NumberofParents = 25
-Range1 = -20
-Range2 = 20
+	Questions[x] = str(z) + " - "  + str(y) + " = "
+MinimumMutation = -answerhigh
+MaximumMutation = answerhigh
+Range1 = -highest
+Range2 = highest
 Gen0 = {}
 FitnessofCurrentGeneration = {}
-MutationChance = 4 #1 = 100%, 2 = 50%, 3 = 30%, 4 = 20%, 5-6-7-8-9-10 = 10%
-MinimumMutation = -10
-MaximumMutation = 10
 ##The Randomizer
 def randomizer(number1,number2):
 	X = [random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2)]
@@ -34,7 +38,7 @@ print (Gen0)
 
 #Checking the fitness of each parent
 def fitness(ParentNumber,GenerationNumber):
-	for x in range(1,ParentNumber+1):
+	for x in range(1,11):
 		checker = (globals()['Gen{0}'.format(GenerationNumber)])['Offspring'+str(ParentNumber)][x-1]
 		if str(checker) == str(Answers[x]):
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 100
@@ -46,7 +50,7 @@ def fitness(ParentNumber,GenerationNumber):
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 25
 
 #The checking of all the parents
-for x in range(1,11):
+for x in range(1,NumberofParents):
 	fitness(x,0)
 print(FitnessofCurrentGeneration)
 
@@ -122,11 +126,11 @@ for x in range (1,6):
 	globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
 	FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
 """
-for GenerationNumber in range(1,251):
+for GenerationNumber in range(1,1001):
 	t = GenerationNumber
 	createGenN(NumberofParents,Range1,Range2,t)
 	#print((globals()['Gen{0}'.format(t)]))
-	for x in range(1,11):
+	for x in range(1,NumberofParents+1):
 		fitness(x,t)
 	print ("Generation " + str(t))
 	print(FitnessofCurrentGeneration)
@@ -139,8 +143,8 @@ print("")
 print("Answers")
 print(Answers)
 print("")
-print("Generation 250's answers")
-print(Gen250)
+print("Generation 1000's answers")
+print(Gen1000)
 #Comparer
 """[random.choice(x[0] + y[0]),random.choice(x[1] + y[1]),random.choice(x[2] + y[2]),random.choice(x[3] + y[3]),random.choice(x[4] + y[4]),random.choice(x[5] + y[5]),random.choice(x[6] + y[6]),random.choice(x[7] + y[7]),random.choice(x[8] + y[9])]
 x = [10,20,30]
@@ -150,9 +154,7 @@ for z in range(0,3):
 	locals()['placeholder{0}'.format(z)] = random.choice(locals()['placeholder{0}'.format(z)])
 xy = [placeholder0,placeholder1,placeholder2]
 print (xy)
-
 import random
-
 x = 100
 parent = [(placeholder0 + [lambda:0,lambda:(random.randint(1,3))][random.randint(1,10)%MutationChance == 0]()),(x + [lambda:0,lambda:(random.randint(1,3))][random.randint(1,10)%MutationChance == 0]()),(x + [lambda:0,lambda:(random.randint(1,3))][random.randint(1,10)%MutationChance == 0]()),(x + [lambda:0,lambda:(random.randint(1,3))][random.randint(1,10)%MutationChance == 0]())]
 print (parent)"""
