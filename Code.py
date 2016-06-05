@@ -4,11 +4,13 @@ from collections import defaultdict
 Questions = {}
 Answers = {}
 for x in range(1,(10+1)):
-	y = random.randint(0,10)
-	z = random.randint(0,10)
+	y = random.randint(-10,10)
+	z = random.randint(-10,10)
 	Answers[x] = z + y
 	Questions[x] = str(y) + " + "  + str(z) + " = "
-NumberofParents = 10
+NumberofParents = 25
+Range1 = -20
+Range2 = 20
 Gen0 = {}
 FitnessofCurrentGeneration = {}
 MutationChance = 4 #1 = 100%, 2 = 50%, 3 = 30%, 4 = 20%, 5-6-7-8-9-10 = 10%
@@ -27,12 +29,12 @@ def createGen0(numberofparents,range1,range2):
 		FitnessofCurrentGeneration['Offspring{0}'.format(x)] = 0
 
 #Creating the initial Generation
-createGen0(NumberofParents,0,20)
+createGen0(NumberofParents,Range1,Range2)
 print (Gen0)
 
 #Checking the fitness of each parent
 def fitness(ParentNumber,GenerationNumber):
-	for x in range(1,11):
+	for x in range(1,ParentNumber+1):
 		checker = (globals()['Gen{0}'.format(GenerationNumber)])['Offspring'+str(ParentNumber)][x-1]
 		if str(checker) == str(Answers[x]):
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 100
@@ -122,7 +124,7 @@ for x in range (1,6):
 """
 for GenerationNumber in range(1,251):
 	t = GenerationNumber
-	createGenN(10,0,20,t)
+	createGenN(NumberofParents,Range1,Range2,t)
 	#print((globals()['Gen{0}'.format(t)]))
 	for x in range(1,11):
 		fitness(x,t)
