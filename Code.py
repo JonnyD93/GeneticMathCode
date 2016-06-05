@@ -48,6 +48,16 @@ def fitness(ParentNumber,GenerationNumber):
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 50
 		elif int(checker)-3 == Answers[x] or int(checker)+3 == Answers[x]:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 25
+		elif int(checker)-4 == Answers[x] or int(checker)+4 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 0
+		elif int(checker)-5 == Answers[x] or int(checker)+5 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 25
+		elif int(checker)-6 == Answers[x] or int(checker)+6 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 50
+		elif int(checker)-7 == Answers[x] or int(checker)+7 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 75
+		else:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 100
 
 #The checking of all the parents
 for x in range(1,NumberofParents):
