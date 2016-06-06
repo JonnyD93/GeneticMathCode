@@ -3,8 +3,8 @@ import operator
 from collections import defaultdict
 Questions = {}
 Answers = {}
-answerhigh = 50000
-NumberofParents = 15
+answerhigh = 5000000000
+NumberofParents = 17
 MutationChance = 6 #1 = 100%, 2 = 50%, 3 = 30%, 4-5 = 20%, 6-7-8-9-10 = 10%
 lowest = -(answerhigh + answerhigh)
 highest = answerhigh + answerhigh
@@ -14,8 +14,8 @@ for x in range(1,(10+1)):
 	z = random.randint(-answerhigh,answerhigh)
 	Answers[x] = z + y
 	Questions[x] = str(z) + " + "  + str(y) + " = "
-MinimumMutation = -answerhigh
-MaximumMutation = answerhigh
+MinimumMutation = -(answerhigh//10)
+MaximumMutation = (answerhigh//10)
 Range1 = -highest
 Range2 = highest
 Gen0 = {}
@@ -181,7 +181,7 @@ def createGenN(numberofparents,range1,range2,GenerationNumber):
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness2][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
-	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = [(placeholder0 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder1 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder2 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder3 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder4 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder5 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder6 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder7 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder8 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]()),(placeholder9 + [lambda:0,lambda:(random.randint(-5,5))][random.randint(1,10)%MutationChance == 0]())]
+	(globals()['Gen{0}'.format(GenerationNumber)])['Offspring{0}'.format(3)] = [(placeholder0 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder1 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder2 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder3 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder4 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder5 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder6 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder7 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder8 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]()),(placeholder9 + [lambda:0,lambda:(random.randint(MinimumMutation,MaximumMutation))][random.randint(1,10)%MutationChance == 0]())]
 	for z in range(0,10):
 		globals()['placeholder{0}'.format(z)] = [(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness1][z]),(globals()['Gen{0}'.format(GenerationNumber-1)][Fitness3][z])]
 		globals()['placeholder{0}'.format(z)] = random.choice(globals()['placeholder{0}'.format(z)])
@@ -240,7 +240,7 @@ for x in range (1,6):
 	globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
 	FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
 """
-for GenerationNumber in range(1,20001):
+for GenerationNumber in range(1,1000001):
 	t = GenerationNumber
 	createGenN(NumberofParents,Range1,Range2,t)
 	#print((globals()['Gen{0}'.format(t)]))
