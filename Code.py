@@ -155,14 +155,16 @@ for GenerationNumber in range(1,1001):
 	for x in range (1,6):
 		globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
 		FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
-print("Questions")
-print(Questions)
-print("")
-print("Answers")
-print(Answers)
-print("")
-print("Generation 1000's answers")
-print(Gen1000)
+File = open("GenticCode.txt","w")
+File.write("Questions")
+File.write(Questions)
+File.write("")
+File.write("Answers")
+File.write(Answers)
+File.write("")
+File.write("Generation 1000's answers")
+File.write(Gen1000)
+File.close()
 #Comparer
 """[random.choice(x[0] + y[0]),random.choice(x[1] + y[1]),random.choice(x[2] + y[2]),random.choice(x[3] + y[3]),random.choice(x[4] + y[4]),random.choice(x[5] + y[5]),random.choice(x[6] + y[6]),random.choice(x[7] + y[7]),random.choice(x[8] + y[9])]
 x = [10,20,30]
