@@ -3,7 +3,7 @@ import operator
 from collections import defaultdict
 Questions = {}
 Answers = {}
-answerhigh = 5000000000
+answerhigh = 5000
 NumberofParents = 17
 MutationChance = 6 #1 = 100%, 2 = 50%, 3 = 30%, 4-5 = 20%, 6-7-8-9-10 = 10%
 lowest = -(answerhigh + answerhigh)
@@ -138,8 +138,32 @@ def fitness(ParentNumber,GenerationNumber):
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 950
 		elif int(checker)-43 == Answers[x] or int(checker)+43 == Answers[x]:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 975
-		else:
+		elif int(checker)-44 == Answers[x] or int(checker)+44 == Answers[x]:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1000
+		elif int(checker)-45 == Answers[x] or int(checker)+45 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1025
+		elif int(checker)-46 == Answers[x] or int(checker)+46 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1050
+		elif int(checker)-47 == Answers[x] or int(checker)+47 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1075
+		elif int(checker)-48 == Answers[x] or int(checker)+48 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1100
+		elif int(checker)-49 == Answers[x] or int(checker)+49 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1125
+		elif int(checker)-50 == Answers[x] or int(checker)+50 == Answers[x]:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1150
+		elif int(checker) < Answers[x]+100 and int(checker) > Answers[x]-100:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1250
+		elif int(checker) < Answers[x]+250 and int(checker) > Answers[x]-250:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1500
+		elif int(checker) < Answers[x]+500 and int(checker) > Answers[x]-500:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 2000
+		elif int(checker) < Answers[x]+1000 and int(checker) > Answers[x]-1000:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 3000
+		elif int(checker) < Answers[x]+MaximumMutation and int(checker) > Answers[x]-MinimumMutation:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 4000
+		else:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 5000
 
 #The checking of all the parents
 for x in range(1,NumberofParents):
