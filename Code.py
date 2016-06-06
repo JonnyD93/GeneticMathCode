@@ -3,8 +3,8 @@ import operator
 from collections import defaultdict
 Questions = {}
 Answers = {}
-answerhigh = 10
-NumberofParents = 12
+answerhigh = 500
+NumberofParents = 15
 MutationChance = 6 #1 = 100%, 2 = 50%, 3 = 30%, 4-5 = 20%, 6-7-8-9-10 = 10%
 lowest = -(answerhigh + answerhigh)
 highest = answerhigh + answerhigh
@@ -13,7 +13,7 @@ for x in range(1,(10+1)):
 	y = random.randint(-answerhigh,answerhigh)
 	z = random.randint(-answerhigh,answerhigh)
 	Answers[x] = z + y
-	Questions[x] = str(z) + " - "  + str(y) + " = "
+	Questions[x] = str(z) + " + "  + str(y) + " = "
 MinimumMutation = -answerhigh
 MaximumMutation = answerhigh
 Range1 = -highest
@@ -40,7 +40,7 @@ print (Gen0)
 def fitness(ParentNumber,GenerationNumber):
 	for x in range(1,11):
 		checker = (globals()['Gen{0}'.format(GenerationNumber)])['Offspring'+str(ParentNumber)][x-1]
-		if str(checker) == str(Answers[x]):
+		if int(checker) == int(Answers[x]):
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 100
 		elif int(checker)-1 == Answers[x] or int(checker)+1 == Answers[x]:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 75
@@ -144,7 +144,7 @@ for x in range (1,6):
 	globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
 	FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
 """
-for GenerationNumber in range(1,1001):
+for GenerationNumber in range(1,10000):
 	t = GenerationNumber
 	createGenN(NumberofParents,Range1,Range2,t)
 	#print((globals()['Gen{0}'.format(t)]))
@@ -156,14 +156,23 @@ for GenerationNumber in range(1,1001):
 		globals()['Fitness{0}'.format(x)] = max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get)
 		FitnessofCurrentGeneration.pop(max(FitnessofCurrentGeneration, key=FitnessofCurrentGeneration.get),None)
 File = open("GenticCode.txt","w")
-File.write("Questions")
-File.write(Questions)
-File.write("")
-File.write("Answers")
-File.write(Answers)
-File.write("")
-File.write("Generation 1000's answers")
-File.write(Gen1000)
+File.write("Questions \n")
+for x in range(1,11):
+        File.write(Questions[x])
+        File.write(str(Answers[x]))
+        File.write("\n")
+File.write("Generation 1000's answers \n")
+print(FitnessofCurrentGeneration)
+createGenN(NumberofParents,Range1,Range2,10000)
+for x in range(1,NumberofParents+1):
+		fitness(x,10000)
+print ("Generation 1000")
+print(FitnessofCurrentGeneration)
+for x in range(1,NumberofParents+1):
+        File.write("Offspring " + str(x)+": ")
+        File.write(str(Gen1000['Offspring'+str(x)])+"\n")
+        File.write("Fitness of " + str(x)+": ")
+        File.write(str(FitnessofCurrentGeneration['Offspring'+str(x)])+"\n")
 File.close()
 #Comparer
 """[random.choice(x[0] + y[0]),random.choice(x[1] + y[1]),random.choice(x[2] + y[2]),random.choice(x[3] + y[3]),random.choice(x[4] + y[4]),random.choice(x[5] + y[5]),random.choice(x[6] + y[6]),random.choice(x[7] + y[7]),random.choice(x[8] + y[9])]
