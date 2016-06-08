@@ -3,8 +3,8 @@ import operator
 from collections import defaultdict
 Questions = {}
 Answers = {}
-answerhigh = 5000
-NumberofParents = 17
+answerhigh = 50000
+NumberofParents = 15
 MutationChance = 6 #1 = 100%, 2 = 50%, 3 = 30%, 4-5 = 20%, 6-7-8-9-10 = 10%
 lowest = -(answerhigh + answerhigh)
 highest = answerhigh + answerhigh
@@ -30,6 +30,8 @@ for x in range(1,NumberofParents+1):
 	File.close()
 File = open("GeneticCodeAnswers.txt","w")
 File.close()
+File = open("GeneticList.txt","w")
+File.close()
 ##The Randomizer
 def randomizer(number1,number2):
 	X = [random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2),random.randint(number1,number2)]
@@ -51,119 +53,43 @@ def fitness(ParentNumber,GenerationNumber):
 	for x in range(1,11):
 		checker = (globals()['Gen{0}'.format(GenerationNumber)])['Offspring'+str(ParentNumber)][x-1]
 		if int(checker) == int(Answers[x]):
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 1000
+		elif int(checker) <= Answers[x]+1 and int(checker) >= Answers[x]-1:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 975
+		elif int(checker) <= Answers[x]+2 and int(checker) >= Answers[x]-2:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 950
+		elif int(checker) <= Answers[x]+3 and int(checker) >= Answers[x]-3:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 925
+		elif int(checker) <= Answers[x]+4 and int(checker) >= Answers[x]-4:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 900
+		elif int(checker) <= Answers[x]+5 and int(checker) >= Answers[x]-5:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] +875
+		elif int(checker) <= Answers[x]+6 and int(checker) >= Answers[x]-6:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 850
+		elif int(checker) <= Answers[x]+7 and int(checker) >= Answers[x]-7:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 825
+		elif int(checker) <= Answers[x]+8 and int(checker) >= Answers[x]-8:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 800
+		elif int(checker) <= Answers[x]+9 and int(checker) >= Answers[x]-9:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 775
+		elif int(checker) <= Answers[x]+10 and int(checker) >= Answers[x]-10:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] +750
+		elif int(checker) <= Answers[x]+25 and int(checker) >= Answers[x]-25:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 500
+		elif int(checker) <= Answers[x]+500 and int(checker) >= Answers[x]-50:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 250
+		elif int(checker) <= Answers[x]+100 and int(checker) >= Answers[x]-100:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 100
-		elif int(checker)-1 == Answers[x] or int(checker)+1 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 75
-		elif int(checker)-2 == Answers[x] or int(checker)+2 == Answers[x]:
+		elif int(checker) <= Answers[x]+250 and int(checker) >= Answers[x]-250:
+                                                                FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 75
+		elif int(checker) <= Answers[x]+500 and int(checker) >= Answers[x]-500:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 50
-		elif int(checker)-3 == Answers[x] or int(checker)+3 == Answers[x]:
+		elif int(checker) <= Answers[x]+1000 and int(checker) >= Answers[x]-1000:
 			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 25
-		elif int(checker)-4 == Answers[x] or int(checker)+4 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 0
-		elif int(checker)-5 == Answers[x] or int(checker)+5 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 25
-		elif int(checker)-6 == Answers[x] or int(checker)+6 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 50
-		elif int(checker)-7 == Answers[x] or int(checker)+7 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 75
-		elif int(checker)-8 == Answers[x] or int(checker)+8 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 100
-		elif int(checker)-9 == Answers[x] or int(checker)+9 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 125
-		elif int(checker)-10 == Answers[x] or int(checker)+10 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 150
-		elif int(checker)-11 == Answers[x] or int(checker)+11 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 175
-		elif int(checker)-12 == Answers[x] or int(checker)+12 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 200
-		elif int(checker)-13 == Answers[x] or int(checker)+13 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 225
-		elif int(checker)-14 == Answers[x] or int(checker)+14 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 250
-		elif int(checker)-15 == Answers[x] or int(checker)+15 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 275
-		elif int(checker)-16 == Answers[x] or int(checker)+16 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 300
-		elif int(checker)-17 == Answers[x] or int(checker)+17 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 325
-		elif int(checker)-18 == Answers[x] or int(checker)+18 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 350
-		elif int(checker)-19 == Answers[x] or int(checker)+19 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 375
-		elif int(checker)-20 == Answers[x] or int(checker)+20 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 400
-		elif int(checker)-21 == Answers[x] or int(checker)+21 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 425
-		elif int(checker)-22 == Answers[x] or int(checker)+22 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 450
-		elif int(checker)-23 == Answers[x] or int(checker)+23 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 475
-		elif int(checker)-24 == Answers[x] or int(checker)+24 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 500
-		elif int(checker)-25 == Answers[x] or int(checker)+25 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 525
-		elif int(checker)-26 == Answers[x] or int(checker)+26 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 550
-		elif int(checker)-27 == Answers[x] or int(checker)+27 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 575
-		elif int(checker)-28 == Answers[x] or int(checker)+28 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 600
-		elif int(checker)-29 == Answers[x] or int(checker)+29 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 625
-		elif int(checker)-30 == Answers[x] or int(checker)+30 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 650
-		elif int(checker)-31 == Answers[x] or int(checker)+31 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 675
-		elif int(checker)-32 == Answers[x] or int(checker)+32 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 700
-		elif int(checker)-33 == Answers[x] or int(checker)+33 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 725
-		elif int(checker)-34 == Answers[x] or int(checker)+34 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 750
-		elif int(checker)-35 == Answers[x] or int(checker)+35 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 775
-		elif int(checker)-36 == Answers[x] or int(checker)+36 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 800
-		elif int(checker)-37 == Answers[x] or int(checker)+37 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 825
-		elif int(checker)-38 == Answers[x] or int(checker)+38 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 850
-		elif int(checker)-39 == Answers[x] or int(checker)+39 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 875
-		elif int(checker)-40 == Answers[x] or int(checker)+40 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 900
-		elif int(checker)-41 == Answers[x] or int(checker)+41 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 925
-		elif int(checker)-42 == Answers[x] or int(checker)+42 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 950
-		elif int(checker)-43 == Answers[x] or int(checker)+43 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 975
-		elif int(checker)-44 == Answers[x] or int(checker)+44 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1000
-		elif int(checker)-45 == Answers[x] or int(checker)+45 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1025
-		elif int(checker)-46 == Answers[x] or int(checker)+46 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1050
-		elif int(checker)-47 == Answers[x] or int(checker)+47 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1075
-		elif int(checker)-48 == Answers[x] or int(checker)+48 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1100
-		elif int(checker)-49 == Answers[x] or int(checker)+49 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1125
-		elif int(checker)-50 == Answers[x] or int(checker)+50 == Answers[x]:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1150
-		elif int(checker) < Answers[x]+100 and int(checker) > Answers[x]-100:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1250
-		elif int(checker) < Answers[x]+250 and int(checker) > Answers[x]-250:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 1500
-		elif int(checker) < Answers[x]+500 and int(checker) > Answers[x]-500:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 2000
-		elif int(checker) < Answers[x]+1000 and int(checker) > Answers[x]-1000:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 3000
-		elif int(checker) < Answers[x]+MaximumMutation and int(checker) > Answers[x]-MinimumMutation:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 4000
+		elif int(checker) <= Answers[x]+MaximumMutation and int(checker) >= Answers[x]-MinimumMutation:
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] + 5
 		else:
-			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] - 5000
+			FitnessofCurrentGeneration['Offspring'+str(ParentNumber)] = 0
 
 #The checking of all the parents
 for x in range(1,NumberofParents):
@@ -279,6 +205,8 @@ for GenerationNumber in range(1,1000001):
 	File = open("GeneticCodeAnswers.txt","a")
 	File.write("\n")
 	File.close()
+	File = open("GeneticList.txt","a")
+	File.write("Generation " + str(t) + "\n")
 	print ("Generation " + str(t))
 	print(FitnessofCurrentGeneration)
 	for x in range (1,6):
